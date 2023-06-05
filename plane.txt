@@ -1,0 +1,95 @@
+#include<stdlib.h>
+#include<iostream>
+#include<time.h>
+#include<windows.h>
+using namespace std;
+#include<conio.h>
+
+int main (){
+	srand(time(0));
+	int x = 5; 
+	int y = 10;
+	char input ;
+	int isFire = 0;
+	int score = 0;
+	int ny = 5;
+	int isKilled = 0;
+	
+	while (1){
+		Sleep(50);
+		//1.实现靶子移动 
+		int move = rand() % 10 ;
+		if(move >=4)
+		{
+			ny += 2;
+		}else{
+			ny -= 2;
+		}
+		ny%=50;
+		if(ny<=0)ny=0;
+		system("cls");
+//		靶子 
+//		if(!isKilled){
+			for(int j = 0;j<ny;j++)
+			cout<<" ";
+			cout<<"+\n";
+//		}
+		
+		
+		if (isFire == 0){
+			
+			for(int i=0 ;i<x;i++)
+				cout<<"\n";
+			
+		}
+//		击打靶子 
+		else{
+			
+			for (int i=0 ;i<x;i++){
+				for (int j=0;j<y;j++)
+				cout<<" ";
+				cout<<"|\n";
+			}
+			if(y == ny)
+			{
+				//统计得分 
+//				if(!isKilled)
+				score++;
+//				isKilled = 1;
+			}
+			
+			isFire = 0;
+		}
+//		飞机图案 
+		for(int j =0 ;j<y-1 ;j++)
+			cout<<" ";
+		    cout<<" *\n";
+		for(int j=0;j<y-2;j++)
+		    cout<<" ";
+		cout<<"*****\n";
+		for(int j =0;j<y-1;j++)
+			cout<<" ";
+		cout<<"* *\n";
+		cout<<"        your score ="<<score;
+//		控制飞机  空格攻击 
+		if(kbhit())
+		{
+			input = getch();
+			if(input == 'a')
+			y--;
+			if(input == 'd')
+			y++;
+			if(input == 's')
+			x++;
+			if(input == 'w')
+			x--;
+			if(input == ' ')
+			isFire = 1;
+		}
+		    
+		
+	}
+	
+
+	return 0;
+}
